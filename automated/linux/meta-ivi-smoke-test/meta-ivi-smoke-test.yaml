@@ -1,0 +1,30 @@
+metadata:
+    name: meta-ivi-test-smoke-test
+    format: Lava-Test Test Definition 1.0
+    description: "Smoke test of meta-ivi-test test-fw component tests"
+    maintainer:
+      - stephen lawrence
+    os:
+      - oe
+    scope:
+      - functional
+
+run:
+    steps:
+      - cd ./automated/linux/meta-ivi-smoke-test/
+      - lava-test-case audiomanager --shell ./run_test-fw.sh -t audiomanager
+      - lava-test-case audiomanagerplugins --shell ./run_test-fw.sh -t audiomanagerplugins
+      - lava-test-case common-api-test --shell ./run_test-fw.sh -t common-api-test
+      - lava-test-case common-api-c++-perf --shell ./run_test-fw.sh -t capicxx-perf
+      - lava-test-case common-api-c++-dbus --shell ./run_test-fw.sh -t common-api-c++-dbus
+      - lava-test-case dlt-daemon --shell ./run_test-fw.sh -t dlt-daemon
+      - lava-test-case node-health-monitor --shell ./run_test-fw.sh -t node-health-monitor
+      - lava-test-case node-startup-controller --shell ./run_test-fw.sh -t node-startup-controller
+      - lava-test-case node-state-manager --shell ./run_test-fw.sh -t node-state-manager
+      - lava-test-case persistence-common-object --shell ./run_test-fw.sh -t persistence-common-object
+      - lava-test-case vsomeip --shell ./run_test-fw.sh -t vsomeip
+# Disable PA and PCL as they are known to cause system restart
+#       - lava-test-case persistence-administrator --shell run_test-fw.sh -t persistence-administrator
+#       - lava-test-case persistence-client-library --shell run_test-fw.sh -t persistence-client-library
+# Wayland ivi-ext testing in meta-ivi-test is manual not automated. As there is nothing to call disable it. TODO: something to automate?
+#       - lava-test-case wayland-ivi-extension --shell run_test-fw.sh -t wayland-ivi-extension
