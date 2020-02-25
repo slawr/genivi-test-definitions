@@ -32,15 +32,15 @@ parse_test_fw_output() {
     PASS_COUNT=`cat ${OUTPUT}/${LOG_FILE} | grep -c PASSED`
     # IF a FAILED occured
     if [ "x${FAIL_COUNT}" != "x0" ]; then
-      echo "Found ${FAIL_COUNT} FAILED in output. Returning failure"
+      echo "run_test-fw: Found ${FAIL_COUNT} FAILED in test output. Returning failure"
       exit 1
       # return failure
     elif [ "x${PASS_COUNT}" != "x0" ]; then
-      echo "Found ${PASS_COUNT} PASSED in output. Returning success"
+      echo "run_test-fw: Found ${PASS_COUNT} PASSED in test output. Returning success"
       exit 0
       # return success
     else
-      echo "Found ${PASS_COUNT} PASSED and ${FAIL_COUNT} FAILED in output. Returning failure"
+      echo "run_test-fw: Found ${PASS_COUNT} PASSED and ${FAIL_COUNT} FAILED in test output. Returning failure"
       exit 1
       # return failure as we had no failures or passes = general test failure
     fi
